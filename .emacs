@@ -1,6 +1,5 @@
 (add-to-list 'load-path "~/.site-lisp/")
 (add-to-list 'load-path "~/.site-lisp/nxml-mode")
-(add-to-list 'load-path "~/.site-lisp/color-theme")
 (add-to-list 'load-path "~/.site-lisp/emacs-ruby-mode/")
 (add-to-list 'load-path "~/.site-lisp/ledger")
 
@@ -104,9 +103,6 @@
 
 (load "rng-auto")
 ;;(require 'haxe-mode)
-;;(require 'color-theme)
-;;(color-theme-initialize)
-;;(color-theme-clarity)
 
 ;;(require 'python-mode)
 (require 'doctest-mode)
