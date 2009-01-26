@@ -2,6 +2,7 @@
 (add-to-list 'load-path "~/.site-lisp/nxml-mode")
 (add-to-list 'load-path "~/.site-lisp/color-theme")
 (add-to-list 'load-path "~/.site-lisp/emacs-ruby-mode/")
+(add-to-list 'load-path "~/.site-lisp/ledger")
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -88,6 +89,8 @@
 ;; '(default ((t (:stipple nil :background "black" :foreground "grey85" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :family "bitstream vera sans mono"))))
 ;; '(tooltip ((((class color)) (:inherit variable-pitch :background "lightyellow" :foreground "black" :height 0.9))))
 ;; '(variable-pitch ((t (:height 140 :family "helv")))))
+
+(load "ledger")
 
 (load "rst-mode")
 (add-to-list 'auto-mode-alist '("\\.rst$" . rst-mode))
