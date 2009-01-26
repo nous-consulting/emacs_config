@@ -1,6 +1,5 @@
 (add-to-list 'load-path "~/.site-lisp/")
 (add-to-list 'load-path "~/.site-lisp/nxml-mode")
-(add-to-list 'load-path "~/.site-lisp/emacs-ruby-mode/")
 (add-to-list 'load-path "~/.site-lisp/ledger")
 
 (custom-set-variables
@@ -93,13 +92,6 @@
 
 (load "rst-mode")
 (add-to-list 'auto-mode-alist '("\\.rst$" . rst-mode))
-
-
-(load "ruby-mode")
-
-(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
-(add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
-(autoload 'rubydb "rubydb3x" "Ruby debugger" t)
 
 (load "rng-auto")
 ;;(require 'haxe-mode)
