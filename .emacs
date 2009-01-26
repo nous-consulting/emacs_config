@@ -62,7 +62,6 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(default ((t (:stipple nil :background "black" :foreground "grey85" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "misc" :family "fixed"))))
- '(mmm-default-submode-face ((t (:background "gray3"))))
  '(my-long-line-face ((((class color)) (:background "gray20"))) t)
  '(my-tab-face ((((class color)) (:background "grey20"))) t)
  '(nxml-attribute-local-name-face ((t (:inherit font-lock-variable-name-face))))
@@ -567,17 +566,6 @@
        do (kill-buffer b))))
 (global-set-key [M-f9] 'kill-compilation-buffers)
 
-;; (setq mmm-global-mode 'maybe)
-
-;; (mmm-add-group
-;;  'doctest-python
-;;  '(
-;;          (python-doctest-embedded
-;;                 :submode doctest-mode
-;;                 :face mmm-output-submode-face
-;;                 :front "\"\"\""
-;;                 :back "\"\"\"")))
-
 (defun parse-int ()
   (interactive)
   (let ((sum 0))
@@ -625,17 +613,6 @@
 
 (add-to-list 'tramp-default-proxies-alist
              '("\\`schooltool\\.org\\'" "\\`root\\'" "/ssh:%h:"))
-
-(add-to-list 'load-path "~/.site-lisp/mmm-mode-0.4.8")
-(require 'mmm-mode)
-
-(defun mmmify ()
-  (interactive)
-  (mmm-mode-on)
-  (mmm-ify-by-regexp 'doctest-mode
-                     "def.*doctest_.*:\n +r*\"\"\"" 0
-                     "\"\"\"\n" 0 0)
-  (font-lock-fontify-buffer))
 
 (require 'pigide)
 (setq *pigide-active-project* "/home/ignas/src/schooltool/lyceum-buildout")
