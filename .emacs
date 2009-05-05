@@ -19,6 +19,7 @@
  '(dired-omit-files "^\\.?#\\|^\\.$\\|^\\.\\([^.].*\\)")
  '(dired-omit-files-p t t)
  '(dired-omit-mode t t)
+ '(dired-omit-size-limit nil)
  '(dired-recursive-copies (quote top))
  '(dired-recursive-deletes (quote top))
  '(fill-column 70)
@@ -41,11 +42,6 @@
  '(sgml-basic-offset 2)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
- '(slime-complete-symbol*-fancy t)
- '(slime-complete-symbol-function (quote slime-complete-symbol*))
- '(slime-enable-evaluate-in-emacs t)
- '(slime-mode-hook (quote ((lambda nil (local-set-key (kbd "<tab>") (quote lisp-indent-or-complete))))) t)
- '(slime-multiprocessing t)
  '(speedbar-use-images nil)
  '(speedbar-use-tool-tips-flag nil)
  '(tags-case-fold-search nil)
@@ -74,46 +70,39 @@
  '(nxml-tag-delimiter-face ((t nil)))
  '(rst-level-1-face ((t (:background "grey85" :foreground "black"))) t)
  '(rst-level-2-face ((t (:background "grey78" :foreground "black"))) t)
- '(slime-display-edit-face ((((class color) (background dark)) (:background "grey60"))))
  '(tooltip ((((class color)) (:inherit variable-pitch :background "lightyellow" :foreground "black" :height 0.9))))
  '(variable-pitch ((t (:height 140 :family "helv")))))
 
-;;(custom-set-faces
-;; ;; custom-set-faces was added by Custom.
-;; ;; If you edit it by hand, you could mess it up, so be careful.
-;; ;; Your init file should contain only one such instance.
-;; ;; If there is more than one, they won't work right.
-;;'(default ((t (:stipple nil :background "black" :foreground "grey85" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :family "andale mono"))))
-;; '(default ((t (:stipple nil :background "black" :foreground "grey85" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :family "bitstream vera sans mono"))))
-;; '(tooltip ((((class color)) (:inherit variable-pitch :background "lightyellow" :foreground "black" :height 0.9))))
-;; '(variable-pitch ((t (:height 140 :family "helv")))))
+;; Ubuntu Modes
+(require 'python)
+(require 'tramp)
+(require 'dired)
+(require 'dired-x)
 
+;; emacs-goodies-el
+(require 'browse-kill-ring)
+(browse-kill-ring-default-keybindings)
+
+;; My Modes
 (load "ledger")
 
 (load "rst-mode")
 (add-to-list 'auto-mode-alist '("\\.rst$" . rst-mode))
 
+;; Load Relax NG autoloads
 (load "rng-auto")
-;;(require 'haxe-mode)
 
-;;(require 'python-mode)
 (require 'doctest-mode)
-(require 'python)
 (require 'outdent)
-(require 'tramp)
-(require 'browse-kill-ring)
-(browse-kill-ring-default-keybindings)
 
-(put 'package 'safe-local-variable 'symbolp)
-(put 'Package 'safe-local-variable 'symbolp)
-(put 'syntax 'safe-local-variable 'symbolp)
-(put 'Syntax 'safe-local-variable 'symbolp)
-(put 'Base 'safe-local-variable 'integerp)
-(put 'base 'safe-local-variable 'integerp)
+(require 'dired-sort)
 
-(setq frame-title-format
-      (list "Emacs %S: %j "
-            '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
+;; My own code
+(require 'numbered-buffers) ;; needs lexical-let
+(require 'single-dired)
+
+
+;; X11 Selection configuration
 
 (setq mouse-drag-copy-region nil)  ; stops selection with a mouse being immediately injected to the kill ring
 (setq x-select-enable-primary nil)  ; stops killing/yanking interacting with primary X11 selection 
@@ -122,44 +111,11 @@
 (setq select-active-regions t) ;  active region sets primary X11 selection
 (global-set-key [mouse-2] 'mouse-yank-primary)  ; make mouse middle-click only paste from primary X11 selection, not clipboard and kill ring.
 
-(require 'numbered-buffers)
-;;(require 'cua)
-
 (cua-mode t)
 (pc-selection-mode)
 (delete-selection-mode t)
-;; turn it off
-(cua-mode)
-;; and back on
-(cua-mode)
-;; so i could use both - shift+arrow and ctrl + space, ctrl + enter
-
-(require 'dired)
-(require 'dired-x)
-(require 'single-dired)
-(require 'dired-sort)
 
 (require 'mouse-sel)
-
-;;(add-to-list 'load-path "/home/ignas/src/clojure/clojure-mode")
-;;(require 'clojure-auto)
-
-(setq load-path (cons "/home/ignas/src/clbuild/source/slime" load-path))
-(setq load-path (cons "/home/ignas/src/clbuild/source/slime/contrib" load-path))
-(setq slime-backend "/home/ignas/src/clbuild/.swank-loader.lisp")
-(load "/home/ignas/src/clbuild/source/slime/slime")
-(setq inferior-lisp-program "/home/ignas/src/clbuild/clbuild lisp")
-(setq slime-use-autodoc-mode nil)
-(slime-setup '(slime-fancy slime-tramp slime-asdf slime-xref-browser))
-
-;;(setq swank-clojure-binary "clojure")
-;;(add-to-list 'load-path "/home/ignas/src/clojure/swank-clojure")
-;;(require 'swank-clojure-autoload)
-
-(defun run-clojure ()
-  "Starts clojure in Slime"
-  (interactive)
-  (slime 'clojure))
 
 (require 'hippie-exp)
 (setq hippie-expand-try-functions-list
@@ -172,8 +128,6 @@
         try-complete-file-name
         ))
 
-;;(require 'browse-url)
-;;(require 'tabbar)
 (autoload 'dabbrev-expand "dabbrev" "Word completion." t)
 (autoload 'turn-on-lazy-lock "lazy-lock" "Force enable Lazy Lock mode.")
 
@@ -220,6 +174,7 @@
             (unless dired-omit-mode (dired-omit-mode))
             ))
 
+;; Set the window title to show the opened file
 (setq frame-title-format
       (list (format "%s %%S: %%j " (system-name))
             '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
@@ -301,13 +256,6 @@
       (dabbrev-expand nil)
       (indent-for-tab-command)
       ))
-
-(defun lisp-indent-or-complete ()
-  "Complete if point is at end of a word, otherwise indent line."
-  (interactive)
-  (if (looking-at "\\>")
-      (slime-complete-symbol)
-      (indent-for-tab-command)))
 
 (defun with-filename (file-name action)
   (interactive)
@@ -470,7 +418,6 @@
                ("\\.rng\\'" . nxml-mode)
                ("\\.z?pt\\'" . nxml-mode)
                ("\\.txt$" . org-mode)
-               ;;("\\.hx\\'" . haxe-mode)
                )))
 
 (global-set-key [C-f9] 'pigide-test)
@@ -488,32 +435,6 @@
   (interactive)
   (when (buffer-file-name)
     (shell-command (format "gvim --remote %s" (buffer-file-name)))))
-
-(defun add-log-message (date type file)
- (save-excursion
-   (when file
-     (write-region (format "%s: %s %s\n" date type file) nil
-                   "~/timelog.txt" t 1))))
-
-(add-hook 'first-change-hook
-         (lambda ()
-           (add-log-message (format-time-string "%Y-%m-%d %H:%M") "change"
-                            (buffer-file-name))))
-
-(add-hook 'after-save-hook
-         (lambda ()
-           (add-log-message (format-time-string "%Y-%m-%d %H:%M") "save"
-                            (buffer-file-name))))
-
-(add-hook 'kill-buffer-hook
-         (lambda ()
-           (add-log-message (format-time-string "%Y-%m-%d %H:%M") "kill"
-                            (buffer-file-name))))
-
-(add-hook 'find-file-hook
-         (lambda ()
-           (add-log-message (format-time-string "%Y-%m-%d %H:%M") "open"
-                            (buffer-file-name))))
 
 (server-start)
 (find-file "~/")
@@ -603,19 +524,11 @@
 (global-set-key "\M-\r" 'hs-toggle-hiding)
 
 (add-to-list 'tramp-default-proxies-alist
-             '("\\`schooltool\\.org\\'" "\\`root\\'" "/ssh:%h:"))
+             '("\\`schooltool\\.org\\'" "\\`buildbot\\'" "/ssh:%h:"))
 
 (require 'pigide)
-(setq *pigide-active-project* "/home/ignas/src/schooltool/lyceum-buildout")
+(setq *pigide-active-project* "/home/ignas/src/schooltool/buildout")
 (pigide-setup)
-
-;; (when (featurep 'flymake)
-;;   (set-face-background 'flymake-errline "DarkGray")
-;;   (set-face-foreground 'flymake-errline "DarkRed")
-;;   (set-face-bold-p 'flymake-errline t)
-;;   (set-face-background 'flymake-warnline "DarkGray")
-;;   (set-face-foreground 'flymake-warnline "DarkBlue")
-;;   (set-face-bold-p 'flymake-warnline t))
 
 (require 'py-imports)
 (setq py-import-interactive-select-tag nil)
@@ -653,4 +566,3 @@
                                        file-name))
            do (find-file (format "%s%s" prefix
                                  file-name))))))
-;; c-subword-mode
