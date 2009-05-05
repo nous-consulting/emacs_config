@@ -1,3 +1,6 @@
+(eval-when-compile
+  (require 'cl))
+
 (defun get-non-system-buffer ()
   (loop for b in (buffer-list)
         when (not (string-match "\\*" (buffer-name b)))
