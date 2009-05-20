@@ -26,6 +26,7 @@
  '(fill-column 70)
  '(global-font-lock-mode t nil (font-lock))
  '(indent-tabs-mode nil)
+ '(ispell-local-dictionary "british")
  '(ispell-program-name "ispell")
  '(jde-jdk-registry (quote (("1.4.2" . "/usr/lib/j2se/1.4/"))))
  '(ls-lisp-dirs-first t)
@@ -57,7 +58,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:stipple nil :background "black" :foreground "grey85" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "misc" :family "fixed"))))
+ '(default ((t (:stipple nil :background "black" :foreground "grey85" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "misc" :family "fixed"))))
  '(my-long-line-face ((((class color)) (:background "gray20"))) t)
  '(my-tab-face ((((class color)) (:background "grey20"))) t)
  '(nxml-attribute-local-name-face ((t (:inherit font-lock-variable-name-face))))
