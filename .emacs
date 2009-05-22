@@ -529,7 +529,7 @@
              '("\\`schooltool\\.org\\'" "\\`buildbot\\'" "/ssh:%h:"))
 
 (require 'pigide)
-(setq *pigide-active-project* "/home/ignas/src/schooltool/buildout")
+(setq *pigide-active-project* "/home/ignas/src/ututi/ututi")
 (pigide-setup)
 
 (require 'py-imports)
