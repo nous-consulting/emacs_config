@@ -1,6 +1,5 @@
 (add-to-list 'load-path "~/.site-lisp/")
 (add-to-list 'load-path "~/.site-lisp/extra/")
-(add-to-list 'load-path "~/.site-lisp/extra/nxml-mode")
 (add-to-list 'load-path "~/.site-lisp/extra/ledger")
 
 (custom-set-variables
