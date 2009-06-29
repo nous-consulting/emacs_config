@@ -164,17 +164,17 @@
   (if pigide-current-signature
       (pigide-show (format "%s" pigide-current-signature))))
 
-(defun pigide-setup-keys ()
-  "Setup some standard keys for pigide."
-  (mapcar
-   (lambda (args)
-     (apply 'define-key (cons python-mode-map args)))
-   '(
-    ("(" pigide-electric-lparen)
-    ("," pigide-electric-comma)
-    )))
+;;(defun pigide-setup-keys ()
+;;  "Setup some standard keys for pigide."
+;;  (mapcar
+;;   (lambda (args)
+;;     (apply 'define-key (cons python-mode-map args)))
+;;   '(
+;;    ("(" pigide-electric-lparen)
+;;    ("," pigide-electric-comma)
+;;    )))
 
-(pigide-setup-keys)
+;;(pigide-setup-keys)
 
 (defun cleanup-signature (signature)
   (with-temp-buffer
