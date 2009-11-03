@@ -2317,7 +2317,7 @@ Returns the number of matched lines."
       ;; HACK HACK HACK, replace with some clever code to support windows and shit
       (erase-buffer)
       (insert (shell-command-to-string
-               (format "look \"%s\" \"%s\"" tag file)))
+               (format "look \"%s\" \"%s\" | grep -v \"from .* import\"" tag file)))
       (beginning-of-buffer)
       ;; END OF HACK
 
