@@ -56,10 +56,20 @@
          do (hacky-replace (expand-file-name path) ""))
     (buffer-string)))
 
+
+(defun get-non-module-path (path)
+  (let* ((fn "/home/ignas/src/rttax2/zope/lib/python/Shared/DC/ZRDB/DA.py")
+         (dir (directory-file-name (file-name-directory fn))))
+    (while (file-exists-p (expand-file-name "__init__.py" dir))
+      (setf dir (directory-file-name (file-name-directory dir))))
+    dir))
+
 (defun remove-src (path)
   (with-temp-buffer
     (insert path)
     (hacky-replace ".py" "")
+    (beginning-of-line)
+    (hacky-replace (concat (get-non-module-path path) "/") "")
     (beginning-of-line)
     (hacky-regexp-replace ".*/src/ututi\\..*?/" "")
     (beginning-of-line)
