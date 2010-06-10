@@ -429,6 +429,10 @@
             (flymake-mode)
             (local-set-key [C-c C-c] 'recompile))))
 
+(add-hook 'html-mode-hook
+          (function (lambda ()
+            (hs-minor-mode))))
+
 (global-set-key [C-f10] 'pigide-compile)
 (global-set-key [f10] 'smart-recompile)
 
@@ -520,6 +524,14 @@
               nil
               nil
               python-hs-forward-sexp-func
+              nil) hs-special-modes-alist))
+
+(setq hs-special-modes-alist
+      (cons '(html-mode
+              "<.*"
+              nil
+              nil
+              sgml-skip-tag-forward
               nil) hs-special-modes-alist))
 
 (global-set-key "\M-\r" 'hs-toggle-hiding)
