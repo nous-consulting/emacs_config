@@ -140,7 +140,7 @@
                         (lambda (line count)
                           (when (equal (tagEntryInfo-name (vtags-parse-line line))
                                        pattern)
-                            (push (tagEntryInfo-file (vtags-parse-line line))
+                            (push (expand-file-name (tagEntryInfo-file (vtags-parse-line line)) dir)
                                   files))))))
         files)))
 
