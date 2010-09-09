@@ -91,7 +91,7 @@
 (add-to-list 'auto-mode-alist '("\\.rst$" . rst-mode))
 
 ;; Load Relax NG autoloads
-(load "rng-auto")
+;; (load "rng-auto")
 
 (require 'doctest-mode)
 (require 'outdent)
