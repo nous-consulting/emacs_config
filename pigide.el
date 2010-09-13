@@ -47,7 +47,9 @@
                                (if (equal (car pigide-compile-history) pigide-compile-command)
                                    '(pigide-compile-history . 1)
                                    'pigide-compile-history))))
-    (compile (format "cd %s && %s" (pigide-ensure-project) command) t)
+    (let ((default-directory (pigide-ensure-project))
+          (compilation-environment '("PAGER=")))
+      (compile (format "%s" command) t))
     (setq pigide-compile-command command)))
 
 ;;;
