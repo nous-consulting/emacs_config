@@ -4,6 +4,13 @@
 
 (defvar *pigide-active-project*)
 
+(defun mako-i18nize ()
+  (interactive)
+  (kill-region (mark) (point))
+  (insert "${_('')}")
+  (backward-char-nomark 3)
+  (yank))
+
 (defun pigide-ensure-project ()
   (if *pigide-active-project*
       *pigide-active-project*
