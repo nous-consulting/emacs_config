@@ -201,6 +201,15 @@
 
 (global-set-key [(meta g)] 'goto-line)
 
+(defun insert-pdb (arg)
+  "Insert pdb into code"
+  (interactive "p")
+  (beginning-of-line)
+  (insert "import pdb; pdb.set_trace()\n")
+  (previous-line)
+  (indent-for-tab-command))
+(global-set-key [(meta p)] 'insert-pdb)
+
 (defun voblia/goto-match-paren (arg)
   "Go to the matching parenthesis if on parenthesis."
   (interactive "p")
@@ -417,8 +426,9 @@
                ("\\.zcml\\'" . nxml-mode)
                ("\\.dtml\\'" . sgml-mode)
                ("\\.rng\\'" . nxml-mode)
-               ("\\.z?pt\\'" . nxml-mode)
-               ("\\.txt$" . org-mode)
+               ("\\.z?pt\\'" . html-mode)
+               ("\\.mako\\'" . html-mode)
+               ("\\.txt$\\'" . org-mode)
                )))
 
 (global-set-key [C-f9] 'pigide-test)
