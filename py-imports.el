@@ -86,6 +86,7 @@
     (hacky-replace "/" ".")
     (beginning-of-line)
     (hacky-replace ".__init__" "")
+    (hacky-replace "RttaxProduct" "Products.RttaxProduct")
     (hacky-replace "._bootstrapfields" "") ;; workaround zope.schema._bootstrapfields
     (hacky-replace "._api" "") ;; workaround zope.component._api
     (buffer-string)))
