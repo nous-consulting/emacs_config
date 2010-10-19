@@ -196,7 +196,6 @@
 (global-set-key [C-f4] 'server-edit)
 (global-set-key [f6] 'other-window)
 (global-set-key [f7] 'delete-other-windows)
-(global-set-key [f12] 'eshell)
 (global-set-key [f11] 'comment-region)
 
 (global-set-key [(meta g)] 'goto-line)
@@ -454,6 +453,21 @@
 (server-start)
 (find-file "~/")
 (rename-buffer "*1")
+
+(setq *last-highlighted-block* nil)
+(defun toggle-higlight-line ()
+  (interactive)
+  (if *last-highlighted-block*
+      (progn
+        (font-lock-remove-keywords nil (list *last-highlighted-block*))
+        (setf *last-highlighted-block* nil))
+      (progn
+        (let ((lock-block (list (format "^[^\n]\\{%d\\}\\(.\\)" (current-column)) '(1 'my-long-line-face append))))
+          (setf *last-highlighted-block* lock-block)
+          (font-lock-add-keywords nil (list *last-highlighted-block*)))))
+  (font-lock-mode t))
+
+(global-set-key [f12] 'toggle-higlight-line)
 
 (font-lock-add-keywords
  'python-mode
