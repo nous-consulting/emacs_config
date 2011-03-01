@@ -31,6 +31,10 @@
   (interactive)
   (compile (format "cd %s && bin/tags" (pigide-ensure-project))))
 
+(defun pigide-ctags ()
+  (interactive)
+  (compile (format "cd %s && bin/ctags" (pigide-ensure-project))))
+
 (defvar pigide-test-command "test")
 (defvar pigide-test-history nil)
 (defun pigide-test ()
@@ -246,6 +250,16 @@
                       (file-name-directory buffer-file-name))))
     (list "pyflakes" (list local-file))))
 
+(defun show-fly-err-at-point ()
+  "If the cursor is sitting on a flymake error, display the message in the minibuffer"
+  (interactive)
+  (let ((line-no (line-number-at-pos)))
+    (dolist (elem flymake-err-info)
+      (if (eq (car elem) line-no)
+          (let ((err (car (second elem))))
+            (message "%s" (flymake-ler-text err)))))))
+
+(add-hook 'post-command-hook 'show-fly-err-at-point)
 
 (defun match-adapter (adapter)
   (let ((tfi (find-tags-table-heuristically))
