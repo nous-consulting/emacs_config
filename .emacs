@@ -33,7 +33,6 @@
  '(ls-lisp-hide-\.lnk t)
  '(ls-lisp-ignore-case t)
  '(make-backup-files t)
- '(org-agenda-files (quote ("/home/ignas/src/notes/")))
  '(pascal-indent-level 2)
  '(prolog-program-name "pl")
  '(require-final-newline (quote ask))
