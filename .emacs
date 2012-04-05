@@ -1,6 +1,5 @@
 (add-to-list 'load-path "~/.site-lisp/")
 (add-to-list 'load-path "~/.site-lisp/extra/")
-(add-to-list 'load-path "~/.site-lisp/extra/ledger")
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -84,8 +83,6 @@
 (browse-kill-ring-default-keybindings)
 
 ;; My Modes
-(load "ledger")
-
 (load "rst-mode")
 (add-to-list 'auto-mode-alist '("\\.rst$" . rst-mode))
 
